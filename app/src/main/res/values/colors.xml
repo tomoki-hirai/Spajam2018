@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorThickPrimary">#1A237E</color>
+
+    <color name="colorIllUp">#FFFFFF</color>
+    <color name="colorThickIllUp">#BDBDBD</color>
+    <color name="colorIllDown">#BDBDBD</color>
+    <color name="colorThickIllDown">#424242</color>
+    <color name="colorTempUp">#81D4FA</color>
+    <color name="colorThickTempUp">#01579B</color>
+    <color name="colorTempDown">#F57C00</color>
+    <color name="colorThickTempDown">#E65100</color>
+
+    <color name="colordisable">#333333</color>
 </resources>

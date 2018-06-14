@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Spajam2018</string>
+    <string name="button_normal">normal</string>
+    <string name="button_horizontal_chain">h_chain</string>
+    <string name="button_vertical_chain">v_chain</string>
+    <string name="button_guideline">guideline</string>
 </resources>
