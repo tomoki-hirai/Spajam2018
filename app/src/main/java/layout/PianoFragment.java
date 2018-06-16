@@ -182,7 +182,7 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
             for (int i=0;i<buttonIDs.length;i++){
                 if (buttonID == buttonIDs[i]){
                         Log.d(TAG,"BUTTTON:BUTTON"+Integer.toString(i+1));
-                    mManager.selectPianoSound(i);
+                    mManager.selectPianoSound(7-i);
                     mManager.prepare();
 
                 }
