@@ -30,8 +30,9 @@ import java.util.List;
 
 import layout.DrumFragment;
 import layout.HomeFragment;
+import layout.PianoFragment;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener ,HomeFragment.OnFragmentInteractionListener ,DrumFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements SensorEventListener ,HomeFragment.OnFragmentInteractionListener ,DrumFragment.OnFragmentInteractionListener, PianoFragment.OnFragmentInteractionListener{
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
 
@@ -44,18 +45,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
-//        HomeFragment homeFragment = new HomeFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.container, homeFragment);
-//        transaction.commit();
-
-        //        デバック用
-        DrumFragment drumFragment = new DrumFragment();
+        HomeFragment homeFragment = new HomeFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, drumFragment);
+        transaction.replace(R.id.container, homeFragment);
         transaction.commit();
-
-//        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
 
     @Override
