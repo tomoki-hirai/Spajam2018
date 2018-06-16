@@ -1,7 +1,6 @@
 package layout;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,15 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TabHost;
 
 import com.minoru.minoru.spajam2018.MainActivity;
-import com.minoru.minoru.spajam2018.MediaManager;
-import com.minoru.minoru.spajam2018.R;
-
-import java.io.IOException;
-
 import com.minoru.minoru.spajam2018.R;
 
 /**
@@ -80,19 +72,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        // 画像のドラム
-        ImageButton buttonDrumVisual = (ImageButton)view.findViewById(R.id.DrumVisualButtan);
-        buttonDrumVisual.setOnClickListener(this);
         // 文字のドラム
-        Button buttonDrumTxt = (Button)view.findViewById(R.id.DrumTxtButton);
+        Button buttonDrumTxt = (Button)view.findViewById(R.id.DrumButton);
         buttonDrumTxt.setOnClickListener(this);
-
-        // 画像のピアノ
-        ImageButton buttonPianoVisual = (ImageButton)view.findViewById(R.id.PianoVisualButton);
-        buttonPianoVisual.setOnClickListener(this);
         // 文字のピアノ
-        Button buttonPianoTxt = (Button)view.findViewById(R.id.pianoTxtButton);
+        Button buttonPianoTxt = (Button)view.findViewById(R.id.PianoButton);
         buttonPianoTxt.setOnClickListener(this);
 
 
@@ -128,7 +112,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
         if (view != null){
-            if (view.getId()==R.id.DrumVisualButtan||view.getId()==R.id.DrumTxtButton){
+            if (view.getId()==R.id.DrumButton){
                 Log.d(TAG,"BUTTON:DrumFragment");
                 //switch to Drum
                 DrumFragment drumFragment = new DrumFragment();
@@ -136,7 +120,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 transaction.replace(R.id.container, drumFragment);
                 transaction.commit();
             }
-            if (view.getId()==R.id.PianoVisualButton||view.getId()==R.id.pianoTxtButton){
+            if (view.getId()==R.id.PianoButton){
                 Log.d(TAG,"BUTTON:PianoFragment");
                 //switch to Drum
                 PianoFragment pianoFragment = new PianoFragment();

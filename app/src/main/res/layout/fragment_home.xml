@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_end="384dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -19,60 +19,24 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="432dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/DrumVisualButtan"
-        android:layout_width="139dp"
-        android:layout_height="145dp"
-        android:layout_marginTop="176dp"
-        android:background="@null"
-        app:layout_constraintEnd_toStartOf="@+id/PianoVisualButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/drum" />
-
-    <ImageButton
-        android:id="@+id/PianoVisualButton"
-        android:layout_width="149dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="188dp"
-        android:background="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/DrumVisualButtan"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/piano" />
-
     <Button
-        android:id="@+id/pianoTxtButton"
-        android:layout_width="88dp"
-        android:layout_height="33dp"
+        android:id="@+id/PianoButton"
+        android:layout_width="163dp"
+        android:layout_height="247dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/piano_button"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PianoVisualButton"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.259" />
 
     <Button
-        android:id="@+id/DrumTxtButton"
-        android:layout_width="88dp"
-        android:layout_height="35dp"
+        android:id="@+id/DrumButton"
+        android:layout_width="158dp"
+        android:layout_height="260dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -80,10 +44,37 @@
         android:background="@drawable/drum_button"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pianoTxtButton"
-        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintEnd_toStartOf="@+id/PianoButton"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DrumVisualButtan"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sound_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/under_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
