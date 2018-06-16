@@ -117,8 +117,8 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             float accX = sensorEvent.values[0];
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
-
-            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
+            Judge(accX,accY,accZ);
+//            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
     }
 
@@ -126,6 +126,28 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+    public void Judge(float accX,float accY,float accZ){
+        float accSum = Math.abs(accX) + Math.abs(accY) + Math.abs(accZ);
+        Log.d(TAG,Float.toString(accSum));
+
+        int Min = 20; //動作する最小値
+        int Middle = 50;
+        int Max = 90; //動作する最小値
+
+        if(Max < accSum){
+            Log.d(TAG,"------------------------");
+        }
+        else if(Middle < accSum){
+            Log.d(TAG,":::::::::::::::::::::::");
+        }
+        else if(Min < accSum){
+            Log.d(TAG,"***************************");
+        }
+
+    }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
