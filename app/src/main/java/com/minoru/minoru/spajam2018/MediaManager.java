@@ -115,6 +115,7 @@ public class MediaManager extends Activity {
     }
 
     //ここどうしよう///
+//    クリックによってここに飛ばそう
     //音をセット
     public void setSound(){
         selectDrumSound(1);
