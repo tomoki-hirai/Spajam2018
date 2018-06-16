@@ -6,58 +6,73 @@
     tools:context="layout.DrumFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <Button
         android:id="@+id/BusButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="140dp"
-        android:text="Button"
+        android:layout_width="147dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/busbutton"
+        app:layout_constraintBottom_toTopOf="@+id/HatButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/CymbalsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="147dp"
+        android:layout_height="147dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="116dp"
-        android:text="Button"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/cymbalsbutton"
         app:layout_constraintBottom_toTopOf="@+id/SnareButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/BusButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.141" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/HatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="44dp"
-        android:text="Button"
+        android:layout_width="147dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/hatbutton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/SnareButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BusButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/SnareButton"
-        android:layout_width="87dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="164dp"
-        android:layout_marginEnd="48dp"
-        android:text="Button"
+        android:layout_width="147dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/snarebutton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/HatButton"
+        app:layout_constraintTop_toBottomOf="@+id/CymbalsButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/selectduram"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
 </android.support.constraint.ConstraintLayout>
