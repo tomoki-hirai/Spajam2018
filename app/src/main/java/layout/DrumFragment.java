@@ -130,7 +130,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
 
-            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
+//            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
             Judge(accX,accY,accZ);
 //            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
