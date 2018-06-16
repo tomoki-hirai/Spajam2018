@@ -45,25 +45,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
-<<<<<<< HEAD
         HomeFragment homeFragment = new HomeFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, homeFragment);
         transaction.commit();
-=======
-//        HomeFragment homeFragment = new HomeFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.container, homeFragment);
-//        transaction.commit();
-
-        //        デバック用
-        DrumFragment drumFragment = new DrumFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, drumFragment);
-        transaction.commit();
-
-//        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
->>>>>>> 1a589045f3900d4b2933a013d484f6b47ec349c2
     }
 
     @Override
