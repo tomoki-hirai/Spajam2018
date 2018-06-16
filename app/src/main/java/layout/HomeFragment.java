@@ -36,9 +36,7 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    // Media
-    private MediaManager Manager = new MediaManager();
-    private MediaPlayer mediaPlayer = new MediaPlayer();
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -72,7 +70,6 @@ public class HomeFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        setSound();
     }
 
     @Override
@@ -121,28 +118,5 @@ public class HomeFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    //
-    public void setSound(){
-        String fileName = "android.resource://" + this.getActivity().getPackageName() + "/" + R.raw.cymbal;
 
-        try {
-            mediaPlayer.setDataSource(this.getActivity(), Uri.parse(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Manager.setMyActivity(this.getActivity(),mediaPlayer);
-        Manager.setVolume(30);
-
-        try{
-            Manager.prepare();
-        }catch( Exception e ){ }
-        Manager.playSound();
-    }
-
-    //
-    public void judgeSound(int argJudgeNum){
-        if(argJudgeNum==0){
-
-        }
-    }
 }
