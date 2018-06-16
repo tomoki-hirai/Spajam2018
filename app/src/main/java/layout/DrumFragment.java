@@ -84,7 +84,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
         }
 
         Manager.setup(this.getActivity());
-        Manager.playSound();
+
     }
 
     @Override
@@ -151,6 +151,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
                 Log.d(TAG, "------------------------");
 
             } else if (Middle < accSum) {
+                Manager.playSound();
                 Log.d(TAG, ":::::::::::::::::::::::");
             } else if (Min < accSum) {
                 Log.d(TAG, "***************************");

@@ -45,21 +45,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         setContentView(R.layout.activity_main);
 
-//        mediaPlayer.create(this,R.raw.hakucyou);
-        String fileName = "android.resource://" + getPackageName() + "/" + R.raw.hakucyou;
-        try {
-            mediaPlayer.setDataSource(this, Uri.parse(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Manager.setMyActivity(this,mediaPlayer);
-        Manager.setVolume(30);
-
-        try{
-            Manager.prepare();
-        }catch( Exception e ){ }
-        Manager.playSound();
-
         setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
