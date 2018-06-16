@@ -118,17 +118,22 @@ public class MediaManager extends Activity {
 //    クリックによってここに飛ばそう
     //音をセット
     public void setSound(){
-        if(fileName==null)
+        if(fileName==null) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
+        }
         try {
+            Log.d("eee","fileName");
+            Log.d("eee",fileName);
             player.setDataSource(myActivity, Uri.parse(fileName));
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("MediaError","読み込みエラー");
         }
+
     }
 
     public void selectDrumSound(int num){
+        reset();
         if(num==0){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
         Log.d("MediaError","bass");}
@@ -143,32 +148,39 @@ public class MediaManager extends Activity {
         setSound();
     }
 
+
     public void selectPianoSound(int num){
         if(num==0)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoDo;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianodo;
         else if(num==1)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoRe;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianore;
         else if(num==2)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoMi;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianomi;
         else if(num==3)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoFa;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianofa;
         else if(num==4)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoSo;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoso;
         else if(num==5)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoRa;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianora;
         else if(num==6)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoSi;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianosi;
         else if(num==7)
-            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoHighdo;
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianohighdo;
+        setSound();
     }
+
     public void setup(Activity argActivity){
         setMyActivity(argActivity);
         setMediaPlayer();
-//        fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
-        setSound();
+        selectDrumSound(2);
         prepare();
-//        setVolume(3);
-//        playSound();
+    }
+
+    public void reset(){
+        player.reset();
+        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        setMediaPlayer();
+
     }
 
 }
