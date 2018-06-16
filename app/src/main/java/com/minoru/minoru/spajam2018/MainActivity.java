@@ -36,38 +36,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
 
-
-    private MediaManager Manager = new MediaManager();
-    private MediaPlayer mediaPlayer = new MediaPlayer();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-//        mediaPlayer.create(this,R.raw.hakucyou);
-        String fileName = "android.resource://" + getPackageName() + "/" + R.raw.hakucyou;
-        try {
-            mediaPlayer.setDataSource(this, Uri.parse(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Manager.setMyActivity(this,mediaPlayer);
-        Manager.setVolume(30);
-
-        try{
-            Manager.prepare();
-        }catch( Exception e ){ }
-        Manager.playSound();
-
         setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
+<<<<<<< HEAD
         HomeFragment homeFragment = new HomeFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, homeFragment);
         transaction.commit();
+=======
+//        HomeFragment homeFragment = new HomeFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.container, homeFragment);
+//        transaction.commit();
+
+        //        デバック用
+        DrumFragment drumFragment = new DrumFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, drumFragment);
+        transaction.commit();
+
+//        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
+>>>>>>> 1a589045f3900d4b2933a013d484f6b47ec349c2
     }
 
     @Override
