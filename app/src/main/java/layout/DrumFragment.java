@@ -114,11 +114,11 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if(sensorEvent.sensor.getType()==Sensor.TYPE_ACCELEROMETER) {
-            float acc_x = sensorEvent.values[0];
-            float acc_y = sensorEvent.values[1];
-            float acc_z = sensorEvent.values[2];
+            float accX = sensorEvent.values[0];
+            float accY = sensorEvent.values[1];
+            float accZ = sensorEvent.values[2];
 
-            Log.d(TAG,Float.toString(acc_x)+","+Float.toString(acc_y)+","+Float.toString(acc_z));
+            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
     }
 
