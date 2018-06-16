@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,10 +47,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
 
     private float preX=0,preY=0,preZ=0;
 
-//    Button BusButton = (Button) getActivity().findViewById(R.id.BusButton);
-//    Button CymbalButton = (Button) getActivity().findViewById(R.id.CymbalsButton);
-//    Button HatButton = (Button) getActivity().findViewById(R.id.HatButton);
-//    Button snareButton = (Button) getActivity().findViewById(R.id.SnareButton);
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -95,21 +93,60 @@ public class DrumFragment extends Fragment implements SensorEventListener{
 
         mManager.setup(this.getActivity());
 
-
-//        BusButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mManager.selectDrumSound(0);
-//            }
-//        } );
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drum, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_drum, container, false);
+
+        Log.d(TAG,"BUTTON SETTED");
+        Button BusButton = (Button) view.findViewById(R.id.BusButton);
+        BusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"BUTTON:Bass");
+            }
+        });
+
+        Button CymbalButton = (Button) view.findViewById(R.id.CymbalsButton);
+        CymbalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"BUTTON:Cymbals");
+                mManager.selectDrumSound(1);
+            }
+        });
+        Button HatButton = (Button) view.findViewById(R.id.HatButton);
+        Button snareButton = (Button) view.findViewById(R.id.SnareButton);
+
+//        return inflater.inflate(R.layout.fragment_drum, container, false);
+        return view;
+    }
+
+    public void onClick(View view) {
+
+        if (view != null){
+            if (view.getId()==R.id.BusButton){
+//                Log.d(TAG,"BUTTON:Bass");
+                //switch to Drum
+                mManager.selectDrumSound(0);
+            }
+            if (view.getId()==R.id.CymbalsButton){
+                Log.d(TAG,"BUTTON:Cymbal");
+                mManager.selectDrumSound(1);
+            }
+            if (view.getId()==R.id.HatButton){
+                Log.d(TAG,"BUTTON:Hat");
+                mManager.selectDrumSound(2);
+            }
+            if (view.getId()==R.id.SnareButton){
+                Log.d(TAG,"BUTTON:Snare");
+                mManager.selectDrumSound(3);
+            }
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -157,7 +194,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
 
     public void Judge(float accX,float accY,float accZ){
         float accSum = Math.abs(accX) + Math.abs(accY) + Math.abs(accZ);
-        Log.d(TAG,Float.toString(accSum));
+//        Log.d(TAG,Float.toString(accSum));
 
         int Min = 20; //動作する最小値
         int Middle = 50;
