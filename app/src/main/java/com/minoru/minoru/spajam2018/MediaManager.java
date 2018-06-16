@@ -150,6 +150,8 @@ public class MediaManager extends Activity {
 
 
     public void selectPianoSound(int num){
+        reset();
+
         if(num==0)
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianodo;
         else if(num==1)
@@ -173,7 +175,11 @@ public class MediaManager extends Activity {
         setMyActivity(argActivity);
         setMediaPlayer();
         selectDrumSound(2);
+//        selectPianoSound(2);
+
         prepare();
+
+
     }
 
     public void reset(){
