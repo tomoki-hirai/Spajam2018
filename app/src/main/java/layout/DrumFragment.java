@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.minoru.minoru.spajam2018.MainActivity;
+import com.minoru.minoru.spajam2018.MediaManager;
 import com.minoru.minoru.spajam2018.R;
 
 import java.util.List;
@@ -41,6 +42,9 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    // Media
+    private MediaManager Manager = new MediaManager();
 
     public DrumFragment() {
         // Required empty public constructor
@@ -78,6 +82,9 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             Sensor s = sensors.get(0);
             manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
         }
+
+        Manager.setup(this.getActivity());
+
     }
 
     @Override
@@ -119,7 +126,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
 
-            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
+//            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
             Judge(accX,accY,accZ);
 //            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
@@ -142,10 +149,15 @@ public class DrumFragment extends Fragment implements SensorEventListener{
         if (System.currentTimeMillis()-ActionTime> interval) {
             if (Max < accSum) {
                 Log.d(TAG, "------------------------");
-
+                Manager.setVolume(0);
+                Manager.playSound();
             } else if (Middle < accSum) {
+                Manager.setVolume(1);
+                Manager.playSound();
                 Log.d(TAG, ":::::::::::::::::::::::");
             } else if (Min < accSum) {
+                Manager.setVolume(2);
+                Manager.playSound();
                 Log.d(TAG, "***************************");
             }
             ActionTime = System.currentTimeMillis();
