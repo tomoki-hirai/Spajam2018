@@ -1,12 +1,18 @@
 package layout;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.minoru.minoru.spajam2018.MediaManager;
+import com.minoru.minoru.spajam2018.R;
+
+import java.io.IOException;
 
 import com.minoru.minoru.spajam2018.R;
 
@@ -29,6 +35,10 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    // Media
+    private MediaManager Manager = new MediaManager();
+    private MediaPlayer mediaPlayer = new MediaPlayer();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -59,6 +69,10 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        super.onCreate(savedInstanceState);
+
+        setSound();
     }
 
     @Override
@@ -105,5 +119,30 @@ public class HomeFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    //
+    public void setSound(){
+        String fileName = "android.resource://" + this.getActivity().getPackageName() + "/" + R.raw.cymbal;
+
+        try {
+            mediaPlayer.setDataSource(this.getActivity(), Uri.parse(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Manager.setMyActivity(this.getActivity(),mediaPlayer);
+        Manager.setVolume(30);
+
+        try{
+            Manager.prepare();
+        }catch( Exception e ){ }
+        Manager.playSound();
+    }
+
+    //
+    public void judgeSound(int argJudgeNum){
+        if(argJudgeNum==0){
+
+        }
     }
 }

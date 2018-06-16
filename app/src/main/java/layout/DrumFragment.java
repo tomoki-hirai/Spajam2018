@@ -118,6 +118,8 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             float accX = sensorEvent.values[0];
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
+
+            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
             Judge(accX,accY,accZ);
 //            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
@@ -149,8 +151,6 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             ActionTime = System.currentTimeMillis();
         }
     }
-
-
 
     /**
      * This interface must be implemented by activities that contain this
