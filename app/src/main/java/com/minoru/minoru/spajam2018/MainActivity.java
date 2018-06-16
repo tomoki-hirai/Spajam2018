@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.List;
 
 import layout.DrumFragment;
@@ -29,7 +30,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mediaPlayer.create(this,R.raw.hakucyou);
+//        mediaPlayer.create(this,R.raw.hakucyou);
+        String fileName = "android.resource://" + getPackageName() + "/" + R.raw.hakucyou;
+        try {
+            mediaPlayer.setDataSource(this, Uri.parse(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 //        Manager.setMyActivity(this);
         Manager.setMyActivity(this,mediaPlayer);
