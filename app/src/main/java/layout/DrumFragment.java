@@ -87,6 +87,8 @@ public class DrumFragment extends Fragment implements SensorEventListener{
 
         mManager.setup(this.getActivity());
 
+
+
     }
 
     @Override
