@@ -1,11 +1,13 @@
 package com.minoru.minoru.spajam2018;
 
+import android.media.MediaPlayer;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +21,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
 
+    private MediaManager Manager = new MediaManager();
+    private MediaPlayer mediaPlayer = new MediaPlayer();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_main);
+        mediaPlayer.create(this,R.raw.hakucyou);
+
+//        Manager.setMyActivity(this);
+        Manager.setMyActivity(this,mediaPlayer);
+//        Manager.getMaxVol();
+        Manager.setVolume(14);
+        try{
+            Manager.prepare();
+        }catch( Exception e ){ }
+        Manager.playSound();
+
+//        setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
 //        HomeFragment homeFragment = new HomeFragment();
@@ -31,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        transaction.commit();
 
         //        デバック用
-        DrumFragment drumFragment = new DrumFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, drumFragment);
-        transaction.commit();
+//        DrumFragment drumFragment = new DrumFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.container, drumFragment);
+//        transaction.commit();
 
 //        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
