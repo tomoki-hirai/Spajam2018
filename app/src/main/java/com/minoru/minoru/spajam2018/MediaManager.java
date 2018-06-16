@@ -177,6 +177,7 @@ public class MediaManager extends Activity {
 
         prepare();
 
+
     }
 
     public void reset(){
