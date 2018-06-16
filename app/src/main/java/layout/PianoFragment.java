@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.minoru.minoru.spajam2018.MainActivity;
+import com.minoru.minoru.spajam2018.MediaManager;
 import com.minoru.minoru.spajam2018.R;
 
 import java.util.List;
@@ -44,7 +45,13 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
     private String mParam1;
     private String mParam2;
 
+    long ActionTime=0;
+
+
     private OnFragmentInteractionListener mListener;
+
+    // Media
+    private MediaManager mManager = new MediaManager();
 
     public PianoFragment() {
         // Required empty public constructor
@@ -82,6 +89,7 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
             Sensor s = sensors.get(0);
             manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
         }
+        mManager.setupPiano(this.getActivity());
     }
 
     @Override
@@ -116,6 +124,32 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
                     + " must implement OnFragmentInteractionListener");
         }
     }
+    public void Judge(float accX,float accY,float accZ){
+        float accSum = Math.abs(accX) + Math.abs(accY) + Math.abs(accZ);
+//        Log.d(TAG,Float.toString(accSum));
+
+        int Min = 20; //動作する最小値
+        int Middle = 50;
+        int Max = 90; //動作する最小値
+        int interval = 5; //動作の検知間隔
+//        Log.d(TAG,Float.toString(System.currentTimeMillis()));
+        if (System.currentTimeMillis()-ActionTime> interval) {
+            if (Max < accSum) {
+                Log.d(TAG, "------------------------");
+                mManager.setVolume(0);
+                mManager.playSound();
+            } else if (Middle < accSum) {
+                mManager.setVolume(1);
+                mManager.playSound();
+                Log.d(TAG, ":::::::::::::::::::::::");
+            } else if (Min < accSum) {
+                Log.d(TAG, "***************************");
+                mManager.setVolume(2);
+                mManager.playSound();
+            }
+            ActionTime = System.currentTimeMillis();
+        }
+    }
 
     @Override
     public void onDetach() {
@@ -131,6 +165,7 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
 
+            Judge(accX,accY,accZ);
             Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
     }
@@ -147,6 +182,9 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
             for (int i=0;i<buttonIDs.length;i++){
                 if (buttonID == buttonIDs[i]){
                         Log.d(TAG,"BUTTTON:BUTTON"+Integer.toString(i+1));
+                    mManager.selectPianoSound(7-i);
+                    mManager.prepare();
+
                 }
             }
         }
