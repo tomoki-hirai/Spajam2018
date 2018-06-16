@@ -69,16 +69,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
-//        HomeFragment homeFragment = new HomeFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.container, homeFragment);
-//        transaction.commit();
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, homeFragment);
+        transaction.commit();
 
         //        デバック用
-        DrumFragment drumFragment = new DrumFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, drumFragment);
-        transaction.commit();
+//        DrumFragment drumFragment = new DrumFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.container, drumFragment);
+//        transaction.commit();
 
 //        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
@@ -110,16 +110,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //            Log.d(TAG,Float.toString(acc_x)+","+Float.toString(acc_y)+","+Float.toString(acc_z));
 //        }
     }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-    }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
