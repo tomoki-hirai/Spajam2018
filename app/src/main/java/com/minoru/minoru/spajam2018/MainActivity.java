@@ -52,12 +52,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        try {
-            mediaPlayer.setDataSource(this, Uri.parse(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Manager.setMyActivity(this,mediaPlayer);
         Manager.setVolume(30);
 
