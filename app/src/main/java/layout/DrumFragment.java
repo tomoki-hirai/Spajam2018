@@ -2,6 +2,7 @@ package layout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,10 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.minoru.minoru.spajam2018.MainActivity;
 import com.minoru.minoru.spajam2018.MediaManager;
 import com.minoru.minoru.spajam2018.R;
+import com.minoru.minoru.spajam2018.TitleActivity;
 
 import java.util.List;
 
@@ -42,6 +45,11 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     private String mParam2;
 
     private float preX=0,preY=0,preZ=0;
+
+//    Button BusButton = (Button) getActivity().findViewById(R.id.BusButton);
+//    Button CymbalButton = (Button) getActivity().findViewById(R.id.CymbalsButton);
+//    Button HatButton = (Button) getActivity().findViewById(R.id.HatButton);
+//    Button snareButton = (Button) getActivity().findViewById(R.id.SnareButton);
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,6 +96,12 @@ public class DrumFragment extends Fragment implements SensorEventListener{
         mManager.setup(this.getActivity());
 
 
+//        BusButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mManager.selectDrumSound(0);
+//            }
+//        } );
 
     }
 

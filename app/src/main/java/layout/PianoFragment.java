@@ -1,40 +1,38 @@
 package layout;
 
+import android.app.Activity;
 import android.content.Context;
-import android.media.MediaPlayer;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TabHost;
 
 import com.minoru.minoru.spajam2018.MainActivity;
-import com.minoru.minoru.spajam2018.MediaManager;
 import com.minoru.minoru.spajam2018.R;
 
-import java.io.IOException;
-
-import com.minoru.minoru.spajam2018.R;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
+ * {@link PianoFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link PianoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class PianoFragment extends Fragment implements SensorEventListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private SensorManager manager;
     String TAG = MainActivity.class.getName();
 
     // TODO: Rename and change types of parameters
@@ -43,7 +41,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {
+    public PianoFragment() {
         // Required empty public constructor
     }
 
@@ -53,11 +51,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment PianoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static PianoFragment newInstance(String param1, String param2) {
+        PianoFragment fragment = new PianoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,30 +70,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        manager = (SensorManager)this.getActivity().getSystemService(Activity.SENSOR_SERVICE);
+        List<Sensor> sensors = manager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+        if(sensors.size() > 0) {
+            Sensor s = sensors.get(0);
+            manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        // 画像のドラム
-        ImageButton buttonDrumVisual = (ImageButton)view.findViewById(R.id.DrumVisualButtan);
-        buttonDrumVisual.setOnClickListener(this);
-        // 文字のドラム
-        Button buttonDrumTxt = (Button)view.findViewById(R.id.DrumTxtButton);
-        buttonDrumTxt.setOnClickListener(this);
-
-        // 画像のピアノ
-        ImageButton buttonPianoVisual = (ImageButton)view.findViewById(R.id.PianoVisualButton);
-        buttonPianoVisual.setOnClickListener(this);
-        // 文字のピアノ
-        Button buttonPianoTxt = (Button)view.findViewById(R.id.pianoTxtButton);
-        buttonPianoTxt.setOnClickListener(this);
-
-
         // Inflate the layout for this fragment
-        return view;
+        return inflater.inflate(R.layout.fragment_piano, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -120,29 +108,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        manager.unregisterListener(this);
     }
 
     @Override
-    public void onClick(View view) {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if(sensorEvent.sensor.getType()==Sensor.TYPE_ACCELEROMETER) {
+            float accX = sensorEvent.values[0];
+            float accY = sensorEvent.values[1];
+            float accZ = sensorEvent.values[2];
 
-        if (view != null){
-            if (view.getId()==R.id.DrumVisualButtan||view.getId()==R.id.DrumTxtButton){
-                Log.d(TAG,"BUTTON:DrumFragment");
-                //switch to Drum
-                DrumFragment drumFragment = new DrumFragment();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, drumFragment);
-                transaction.commit();
-            }
-            if (view.getId()==R.id.PianoVisualButton||view.getId()==R.id.pianoTxtButton){
-                Log.d(TAG,"BUTTON:PianoFragment");
-                //switch to Drum
-                PianoFragment pianoFragment = new PianoFragment();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, pianoFragment);
-                transaction.commit();
-            }
+            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 
     /**
@@ -159,6 +141,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
 }
