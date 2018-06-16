@@ -8,19 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-<<<<<<< HEAD
-import java.util.concurrent.TimeUnit;
-import java.lang.Exception;
-
-
-public class MainActivity extends AppCompatActivity {
-=======
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
->>>>>>> 3f3e8a274d5fb2830d80d7b7d181b2e59d71fbab
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
