@@ -43,8 +43,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-
-
     public HomeFragment() {
         // Required empty public constructor
     }

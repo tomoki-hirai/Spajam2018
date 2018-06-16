@@ -13,6 +13,7 @@ public class MediaManager extends Activity {
     private Activity myActivity;
     private MediaPlayer player = new MediaPlayer();
     private int Vol;
+    private String fileName;
 
     private AudioManager manager;
 
@@ -114,9 +115,10 @@ public class MediaManager extends Activity {
     }
 
     //ここどうしよう///
+//    クリックによってここに飛ばそう
     //音をセット
     public void setSound(){
-        String fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.hakucyou;
+        fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
         try {
             player.setDataSource(myActivity, Uri.parse(fileName));
         } catch (IOException e) {
@@ -125,14 +127,43 @@ public class MediaManager extends Activity {
         }
     }
 
+    public void selectDrumSound(int num){
+        if(num==0)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
+        else if(num==1)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.cymbal;
+        else if(num==2)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.hat;
+        else if(num==3)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.snare;
+        setSound();
+    }
+
+//    public void selectPianoSound(int num){
+//        if(num==0)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoDo;
+//        else if(num==1)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoRe;
+//        else if(num==2)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoMi;
+//        else if(num==3)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoFa;
+//        else if(num==4)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoSo;
+//        else if(num==5)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoRa;
+//        else if(num==6)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoSi;
+//        else if(num==7)
+//            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoHighdo;
+//    }
     public void setup(Activity argActivity){
         setMyActivity(argActivity);
         setMediaPlayer();
 
         setSound();
         prepare();
-
-        setVolume(3);
+//        setVolume(3);
 //        playSound();
     }
 
