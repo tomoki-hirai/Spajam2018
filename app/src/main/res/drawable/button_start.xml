@@ -16,11 +16,11 @@
             <shape xmlns:android="http://schemas.android.com/apk/res/android"
                 android:shape="rectangle">
                 <corners
-                    android:radius="20dp" />
-                <solid
-                    android:color="@color/colorIllDown" />
+                    android:radius="10dp" />
+                <!--<solid-->
+                    <!--android:color="@color/colorStartButton" />-->
                 <stroke android:width="2dp"
-                    android:color="@color/colorBlack"/>
+                    android:color="@color/colorStartButton"/>
                 <padding
                     android:top="10dp"
                     android:bottom="10dp"
@@ -47,7 +47,7 @@
             <shape xmlns:android="http://schemas.android.com/apk/res/android"
                 android:shape="rectangle">
                 <corners
-                    android:radius="20dp" />
+                    android:radius="10dp" />
                 <solid
                     android:color="@color/colorThickIllDown" />
                 <stroke android:width="2dp"
@@ -78,7 +78,7 @@
             <shape xmlns:android="http://schemas.android.com/apk/res/android"
                 android:shape="rectangle">
                 <corners
-                    android:radius="20dp" />
+                    android:radius="10dp" />
                 <solid
                     android:color="@color/colordisable" />
                 <padding
