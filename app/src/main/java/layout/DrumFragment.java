@@ -34,6 +34,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     private static final String ARG_PARAM2 = "param2";
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
+    long ActionTime=0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -117,8 +118,8 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             float accX = sensorEvent.values[0];
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
-
-            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
+            Judge(accX,accY,accZ);
+//            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
     }
 
@@ -126,6 +127,30 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+    public void Judge(float accX,float accY,float accZ){
+        float accSum = Math.abs(accX) + Math.abs(accY) + Math.abs(accZ);
+        Log.d(TAG,Float.toString(accSum));
+
+        int Min = 20; //動作する最小値
+        int Middle = 50;
+        int Max = 90; //動作する最小値
+        int interval = 100; //動作の検知感覚
+//        Log.d(TAG,Float.toString(System.currentTimeMillis()));
+        if (System.currentTimeMillis()-ActionTime> interval) {
+            if (Max < accSum) {
+                Log.d(TAG, "------------------------");
+
+            } else if (Middle < accSum) {
+                Log.d(TAG, ":::::::::::::::::::::::");
+            } else if (Min < accSum) {
+                Log.d(TAG, "***************************");
+            }
+            ActionTime = System.currentTimeMillis();
+        }
+    }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
