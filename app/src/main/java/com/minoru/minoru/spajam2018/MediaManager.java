@@ -118,17 +118,22 @@ public class MediaManager extends Activity {
 //    クリックによってここに飛ばそう
     //音をセット
     public void setSound(){
-        if(fileName==null)
+        if(fileName==null) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
+        }
         try {
+            Log.d("eee","fileName");
+            Log.d("eee",fileName);
             player.setDataSource(myActivity, Uri.parse(fileName));
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("MediaError","読み込みエラー");
         }
+
     }
 
     public void selectDrumSound(int num){
+        reset();
         if(num==0){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
         Log.d("MediaError","bass");}
@@ -161,14 +166,19 @@ public class MediaManager extends Activity {
 //        else if(num==7)
 //            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoHighdo;
 //    }
+
     public void setup(Activity argActivity){
         setMyActivity(argActivity);
         setMediaPlayer();
-//        fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
-        setSound();
+        selectDrumSound(2);
         prepare();
-//        setVolume(3);
-//        playSound();
+    }
+
+    public void reset(){
+        player.reset();
+        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        setMediaPlayer();
+
     }
 
 }

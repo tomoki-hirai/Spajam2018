@@ -104,23 +104,46 @@ public class DrumFragment extends Fragment implements SensorEventListener{
 
         Log.d(TAG,"BUTTON SETTED");
         Button BusButton = (Button) view.findViewById(R.id.BusButton);
+        Button CymbalButton = (Button) view.findViewById(R.id.CymbalsButton);
+        Button HatButton = (Button) view.findViewById(R.id.HatButton);
+        Button SnareButton = (Button) view.findViewById(R.id.SnareButton);
+
         BusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"BUTTON:Bass");
+                mManager.selectDrumSound(0);
+                mManager.prepare();
             }
         });
 
-        Button CymbalButton = (Button) view.findViewById(R.id.CymbalsButton);
         CymbalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"BUTTON:Cymbals");
                 mManager.selectDrumSound(1);
+                mManager.prepare();
             }
         });
-        Button HatButton = (Button) view.findViewById(R.id.HatButton);
-        Button snareButton = (Button) view.findViewById(R.id.SnareButton);
+
+        HatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"BUTTON:Hat");
+                mManager.selectDrumSound(2);
+                mManager.prepare();
+            }
+        });
+
+        SnareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"BUTTON:Snare");
+                mManager.selectDrumSound(3);
+                mManager.prepare();
+            }
+        });
+
 
 //        return inflater.inflate(R.layout.fragment_drum, container, false);
         return view;
