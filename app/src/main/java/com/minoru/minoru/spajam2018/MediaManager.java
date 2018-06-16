@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,17 +29,14 @@ public class MediaManager extends Activity {
         }
     }
 
-    //Activityセット
-    public void setMyActivity(Activity argActivity,MediaPlayer argMediaPlayer){
-        setMyActivity(argActivity);
-        player =  argMediaPlayer;
+    //MediaPlayerセット
+    public void setMediaPlayer(){
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         manager = (AudioManager)myActivity.getSystemService(Context.AUDIO_SERVICE);
-
-        prepare();
         Log.d("MediaError","seted");
     }
 
+    //Activityセット
     public void setMyActivity(Activity argActivity){
         myActivity = argActivity;
     }
@@ -55,22 +53,22 @@ public class MediaManager extends Activity {
     }
 
     //音量を決定
-    public void judgeVol(int argJudgeNum){
+    public int judgeVol(int argJudgeNum){
         if(argJudgeNum==0){
-            Vol=30;
+            return 30;
         }else if(argJudgeNum==1){
-            Vol=20;
+            return 20;
         }else if(argJudgeNum==2){
-            Vol=10;
+            return 10;
         }else{
-            Vol=0;
+            return 20;
         }
     }
 
     // 音量を設定
-    public void setVolume(int argVol){
+    public void setVolume(int argJudgeNum){
         try {
-            manager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (argVol), 0);
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (judgeVol(argJudgeNum)), 0);
             Log.d("MediaError","音量を設定しました");
         }catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -114,4 +112,28 @@ public class MediaManager extends Activity {
             e.printStackTrace();
         }
     }
+
+    //ここどうしよう///
+    //音をセット
+    public void setSound(){
+        String fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.hakucyou;
+        try {
+            player.setDataSource(myActivity, Uri.parse(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("MediaError","読み込みエラー");
+        }
+    }
+
+    public void setup(Activity argActvity){
+        setMyActivity(argActvity);
+        setMediaPlayer();
+
+        setSound();
+        prepare();
+
+        setVolume(3);
+//        playSound();
+    }
+
 }
