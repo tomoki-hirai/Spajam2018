@@ -2,8 +2,8 @@ package com.minoru.minoru.spajam2018;
 
 
 import android.media.MediaPlayer;
-import android.net.Uri;
 
+import android.net.Uri;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,12 +15,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-
 import java.io.IOException;
 
 import layout.DrumFragment;
 
 
+import java.util.List;
+
+import layout.DrumFragment;
+import layout.HomeFragment;
+
+import java.io.IOException;
 import java.util.List;
 
 import layout.DrumFragment;
@@ -39,7 +44,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+//        mediaPlayer.create(this,R.raw.hakucyou);
         String fileName = "android.resource://" + getPackageName() + "/" + R.raw.hakucyou;
+        try {
+            mediaPlayer.setDataSource(this, Uri.parse(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             mediaPlayer.setDataSource(this, Uri.parse(fileName));
@@ -106,7 +118,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+    }
 
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
 }

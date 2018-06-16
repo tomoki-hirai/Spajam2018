@@ -14,6 +14,8 @@ import com.minoru.minoru.spajam2018.R;
 
 import java.io.IOException;
 
+import com.minoru.minoru.spajam2018.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -63,8 +65,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         setSound();
-
     }
 
     @Override
@@ -146,6 +145,4 @@ public class HomeFragment extends Fragment {
 
         }
     }
-
-
 }
