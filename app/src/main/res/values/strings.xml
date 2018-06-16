@@ -4,7 +4,7 @@
     <string name="button_horizontal_chain">h_chain</string>
     <string name="button_vertical_chain">v_chain</string>
     <string name="button_guideline">guideline</string>
-    <string name="button_start">StartButton</string>
+    <string name="button_start">はじめる</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
