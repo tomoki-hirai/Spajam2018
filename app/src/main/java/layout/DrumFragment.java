@@ -2,6 +2,7 @@ package layout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,10 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.minoru.minoru.spajam2018.MainActivity;
 import com.minoru.minoru.spajam2018.MediaManager;
 import com.minoru.minoru.spajam2018.R;
+import com.minoru.minoru.spajam2018.TitleActivity;
 
 import java.util.List;
 
@@ -41,10 +44,17 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     private String mParam1;
     private String mParam2;
 
+    private float preX=0,preY=0,preZ=0;
+
+//    Button BusButton = (Button) getActivity().findViewById(R.id.BusButton);
+//    Button CymbalButton = (Button) getActivity().findViewById(R.id.CymbalsButton);
+//    Button HatButton = (Button) getActivity().findViewById(R.id.HatButton);
+//    Button snareButton = (Button) getActivity().findViewById(R.id.SnareButton);
+
     private OnFragmentInteractionListener mListener;
 
     // Media
-    private MediaManager Manager = new MediaManager();
+    private MediaManager mManager = new MediaManager();
 
     public DrumFragment() {
         // Required empty public constructor
@@ -83,7 +93,15 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
         }
 
-        Manager.setup(this.getActivity());
+        mManager.setup(this.getActivity());
+
+
+//        BusButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mManager.selectDrumSound(0);
+//            }
+//        } );
 
     }
 
@@ -126,7 +144,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             float accY = sensorEvent.values[1];
             float accZ = sensorEvent.values[2];
 
-            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
+//            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
             Judge(accX,accY,accZ);
 //            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
         }
@@ -144,17 +162,21 @@ public class DrumFragment extends Fragment implements SensorEventListener{
         int Min = 20; //動作する最小値
         int Middle = 50;
         int Max = 90; //動作する最小値
-        int interval = 100; //動作の検知感覚
+        int interval = 50; //動作の検知間隔
 //        Log.d(TAG,Float.toString(System.currentTimeMillis()));
         if (System.currentTimeMillis()-ActionTime> interval) {
             if (Max < accSum) {
                 Log.d(TAG, "------------------------");
-
+                mManager.setVolume(0);
+                mManager.playSound();
             } else if (Middle < accSum) {
-                Manager.playSound();
+                mManager.setVolume(1);
+                mManager.playSound();
                 Log.d(TAG, ":::::::::::::::::::::::");
             } else if (Min < accSum) {
                 Log.d(TAG, "***************************");
+                mManager.setVolume(2);
+                mManager.playSound();
             }
             ActionTime = System.currentTimeMillis();
         }
