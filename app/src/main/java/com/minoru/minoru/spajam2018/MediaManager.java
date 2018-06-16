@@ -13,6 +13,7 @@ public class MediaManager extends Activity {
     private Activity myActivity;
     private MediaPlayer player = new MediaPlayer();
     private int Vol;
+    private String fileName;
 
     private AudioManager manager;
 
@@ -116,7 +117,8 @@ public class MediaManager extends Activity {
     //ここどうしよう///
     //音をセット
     public void setSound(){
-        String fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.hakucyou;
+        selectDrumSound(1);
+//        fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
         try {
             player.setDataSource(myActivity, Uri.parse(fileName));
         } catch (IOException e) {
@@ -125,8 +127,15 @@ public class MediaManager extends Activity {
         }
     }
 
-    public void select(){
-
+    public void selectDrumSound(int num){
+        if(num==0)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
+        else if(num==1)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.cymbal;
+        else if(num==2)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.hat;
+        else if(num==3)
+            fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.snare;
     }
 
     public void setup(Activity argActivity){
@@ -135,8 +144,7 @@ public class MediaManager extends Activity {
 
         setSound();
         prepare();
-
-        setVolume(3);
+//        setVolume(3);
 //        playSound();
     }
 
