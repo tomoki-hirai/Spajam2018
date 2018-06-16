@@ -1,6 +1,9 @@
 package com.minoru.minoru.spajam2018;
 
+
 import android.media.MediaPlayer;
+
+import android.net.Uri;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,6 +16,16 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.io.IOException;
+
+import layout.DrumFragment;
+
+
+import java.util.List;
+
+import layout.DrumFragment;
+import layout.HomeFragment;
+
+import java.io.IOException;
 import java.util.List;
 
 import layout.DrumFragment;
@@ -22,14 +35,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
 
+
     private MediaManager Manager = new MediaManager();
     private MediaPlayer mediaPlayer = new MediaPlayer();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
 //        mediaPlayer.create(this,R.raw.hakucyou);
         String fileName = "android.resource://" + getPackageName() + "/" + R.raw.hakucyou;
         try {
@@ -38,35 +53,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             e.printStackTrace();
         }
 
-//        Manager.setMyActivity(this);
+        try {
+            mediaPlayer.setDataSource(this, Uri.parse(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Manager.setMyActivity(this,mediaPlayer);
-//        Manager.getMaxVol();
-        Manager.setVolume(14);
+        Manager.setVolume(30);
+
         try{
             Manager.prepare();
         }catch( Exception e ){ }
         Manager.playSound();
 
-//        setContentView(R.layout.content_main);
+        setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
-<<<<<<< HEAD
         HomeFragment homeFragment = new HomeFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, homeFragment);
         transaction.commit();
-=======
-//        HomeFragment homeFragment = new HomeFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.container, homeFragment);
-//        transaction.commit();
-
-        //        デバック用
-//        DrumFragment drumFragment = new DrumFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.container, drumFragment);
-//        transaction.commit();
->>>>>>> 2efd1d6a569a39a08e92181576af9a0175c84ae9
 
         //        デバック用
 //        DrumFragment drumFragment = new DrumFragment();
@@ -104,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //            Log.d(TAG,Float.toString(acc_x)+","+Float.toString(acc_y)+","+Float.toString(acc_z));
 //        }
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
