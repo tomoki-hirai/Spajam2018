@@ -3,6 +3,10 @@ package com.minoru.minoru.spajam2018;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.concurrent.TimeUnit;
+import java.lang.Exception;
+
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -10,4 +14,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
 }
