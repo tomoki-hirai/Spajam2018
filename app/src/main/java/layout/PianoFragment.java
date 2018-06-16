@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.minoru.minoru.spajam2018.MainActivity;
 import com.minoru.minoru.spajam2018.R;
@@ -27,13 +29,16 @@ import java.util.List;
  * Use the {@link PianoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PianoFragment extends Fragment implements SensorEventListener {
+public class PianoFragment extends Fragment implements SensorEventListener ,View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
+    private int[] buttonIDs = {R.id.PianoButton1,R.id.PianoButton2,R.id.PianoButton3,
+            R.id.PianoButton4,R.id.PianoButton5,R.id.PianoButton6,
+            R.id.PianoButton7,R.id.PianoButton8,R.id.PianoButton8};
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -83,7 +88,15 @@ public class PianoFragment extends Fragment implements SensorEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_piano, container, false);
+        View view = inflater.inflate(R.layout.fragment_piano, container, false);
+
+        Button[] buttons = new Button[8];
+        for (int i=0;i<buttons.length;i++){
+            buttons[i] = (Button) view.findViewById(buttonIDs[i]);
+            buttons[i].setOnClickListener(this);
+        }
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -125,6 +138,18 @@ public class PianoFragment extends Fragment implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view != null){
+            int buttonID = view.getId();
+            for (int i=0;i<buttonIDs.length;i++){
+                if (buttonID == buttonIDs[i]){
+                        Log.d(TAG,"BUTTTON:BUTTON"+Integer.toString(i+1));
+                }
+            }
+        }
     }
 
     /**
