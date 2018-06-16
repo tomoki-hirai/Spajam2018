@@ -4,4 +4,5 @@
     <string name="button_horizontal_chain">h_chain</string>
     <string name="button_vertical_chain">v_chain</string>
     <string name="button_guideline">guideline</string>
+    <string name="button_start">StartButton</string>
 </resources>
