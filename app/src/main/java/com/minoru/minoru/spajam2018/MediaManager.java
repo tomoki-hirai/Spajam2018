@@ -54,10 +54,23 @@ public class MediaManager extends Activity {
         }
     }
 
+    //音量を決定
+    public void judgeVol(int argJudgeNum){
+        if(argJudgeNum==0){
+            Vol=30;
+        }else if(argJudgeNum==1){
+            Vol=20;
+        }else if(argJudgeNum==2){
+            Vol=10;
+        }else{
+            Vol=0;
+        }
+    }
+
     // 音量を設定
     public void setVolume(int argVol){
         try {
-            manager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (argVol / 2), 0);
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (argVol), 0);
             Log.d("MediaError","音量を設定しました");
         }catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block

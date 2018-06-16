@@ -142,7 +142,10 @@ public class HomeFragment extends Fragment {
 
     //
     public void judgeSound(int argJudgeNum){
+        if(argJudgeNum==0){
 
+        }
     }
+
 
 }
