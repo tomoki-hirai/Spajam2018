@@ -15,7 +15,7 @@ public class MediaManager extends Activity {
 
     private AudioManager manager;
 
-
+    // 　コンストラクタ
     public void MediaManager(){
         // ストリームタイプの設定
         try {
@@ -34,6 +34,7 @@ public class MediaManager extends Activity {
         player =  argMediaPlayer;
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         manager = (AudioManager)myActivity.getSystemService(Context.AUDIO_SERVICE);
+
         prepare();
         Log.d("MediaError","seted");
     }
@@ -86,6 +87,16 @@ public class MediaManager extends Activity {
         }catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
             Log.d("MediaError","再生エラー");
+            e.printStackTrace();
+        }
+    }
+
+    public void stop(){
+        try {
+            player.start();
+        }catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            Log.d("MediaError","ストップエラー");
             e.printStackTrace();
         }
     }
