@@ -91,6 +91,7 @@ public class MediaManager extends Activity {
         }
     }
 
+    //音をストップ
     public void stop(){
         try {
             player.start();

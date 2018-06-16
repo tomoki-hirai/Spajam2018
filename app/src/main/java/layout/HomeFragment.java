@@ -72,20 +72,8 @@ public class HomeFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        String fileName = "android.resource://" + this.getActivity().getPackageName() + "/" + R.raw.hakucyou;
+        setSound();
 
-        try {
-            mediaPlayer.setDataSource(this.getActivity(), Uri.parse(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Manager.setMyActivity(this.getActivity(),mediaPlayer);
-        Manager.setVolume(30);
-
-        try{
-            Manager.prepare();
-        }catch( Exception e ){ }
-        Manager.playSound();
     }
 
     @Override
@@ -133,4 +121,28 @@ public class HomeFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    //
+    public void setSound(){
+        String fileName = "android.resource://" + this.getActivity().getPackageName() + "/" + R.raw.cymbal;
+
+        try {
+            mediaPlayer.setDataSource(this.getActivity(), Uri.parse(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Manager.setMyActivity(this.getActivity(),mediaPlayer);
+        Manager.setVolume(30);
+
+        try{
+            Manager.prepare();
+        }catch( Exception e ){ }
+        Manager.playSound();
+    }
+
+    //
+    public void judgeSound(int argJudgeNum){
+
+    }
+
 }
