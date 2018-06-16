@@ -125,6 +125,10 @@ public class MediaManager extends Activity {
         }
     }
 
+    public void select(){
+
+    }
+
     public void setup(Activity argActivity){
         setMyActivity(argActivity);
         setMediaPlayer();
