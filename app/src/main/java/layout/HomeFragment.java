@@ -36,8 +36,6 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-
-
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -67,7 +65,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
         super.onCreate(savedInstanceState);
 
     }

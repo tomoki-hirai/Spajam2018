@@ -41,10 +41,12 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     private String mParam1;
     private String mParam2;
 
+    private float preX=0,preY=0,preZ=0;
+
     private OnFragmentInteractionListener mListener;
 
     // Media
-    private MediaManager Manager = new MediaManager();
+    private MediaManager mManager = new MediaManager();
 
     public DrumFragment() {
         // Required empty public constructor
@@ -83,7 +85,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
         }
 
-        Manager.setup(this.getActivity());
+        mManager.setup(this.getActivity());
 
     }
 
@@ -144,21 +146,21 @@ public class DrumFragment extends Fragment implements SensorEventListener{
         int Min = 20; //動作する最小値
         int Middle = 50;
         int Max = 90; //動作する最小値
-        int interval = 100; //動作の検知感覚
+        int interval = 50; //動作の検知間隔
 //        Log.d(TAG,Float.toString(System.currentTimeMillis()));
         if (System.currentTimeMillis()-ActionTime> interval) {
             if (Max < accSum) {
                 Log.d(TAG, "------------------------");
-                Manager.setVolume(0);
-                Manager.playSound();
+                mManager.setVolume(0);
+                mManager.playSound();
             } else if (Middle < accSum) {
-                Manager.setVolume(1);
-                Manager.playSound();
+                mManager.setVolume(1);
+                mManager.playSound();
                 Log.d(TAG, ":::::::::::::::::::::::");
             } else if (Min < accSum) {
-                Manager.setVolume(2);
-                Manager.playSound();
                 Log.d(TAG, "***************************");
+                mManager.setVolume(2);
+                mManager.playSound();
             }
             ActionTime = System.currentTimeMillis();
         }
