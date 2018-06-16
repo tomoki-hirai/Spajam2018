@@ -54,6 +54,7 @@ public class MediaManager extends Activity {
 
     //音量を決定
     public int judgeVol(int argJudgeNum){
+        Log.d("Media","Volを設定");
         if(argJudgeNum==0){
             return 30;
         }else if(argJudgeNum==1){
@@ -61,7 +62,7 @@ public class MediaManager extends Activity {
         }else if(argJudgeNum==2){
             return 10;
         }else{
-            return 20;
+            return 0;
         }
     }
 
@@ -93,7 +94,6 @@ public class MediaManager extends Activity {
     public void playSound() {
         try {
             player.start();
-            Log.d("MediaError",Integer.toString(Vol));
             Log.d("MediaError","再生します");
         }catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -125,8 +125,8 @@ public class MediaManager extends Activity {
         }
     }
 
-    public void setup(Activity argActvity){
-        setMyActivity(argActvity);
+    public void setup(Activity argActivity){
+        setMyActivity(argActivity);
         setMediaPlayer();
 
         setSound();

@@ -35,10 +35,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
 
-
-    private MediaManager Manager = new MediaManager();
-    private MediaPlayer mediaPlayer = new MediaPlayer();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +44,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.content_main);
 
         //        初期画面をhomefragmentにする
-        HomeFragment homeFragment = new HomeFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, homeFragment);
-        transaction.commit();
+//        HomeFragment homeFragment = new HomeFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.container, homeFragment);
+//        transaction.commit();
 
         //        デバック用
-//        DrumFragment drumFragment = new DrumFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.container, drumFragment);
-//        transaction.commit();
+        DrumFragment drumFragment = new DrumFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, drumFragment);
+        transaction.commit();
 
 //        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
