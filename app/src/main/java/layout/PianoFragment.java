@@ -1,17 +1,23 @@
 package layout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.minoru.minoru.spajam2018.MainActivity;
 import com.minoru.minoru.spajam2018.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +32,8 @@ public class PianoFragment extends Fragment implements SensorEventListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private SensorManager manager;
+    String TAG = MainActivity.class.getName();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,6 +70,13 @@ public class PianoFragment extends Fragment implements SensorEventListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        manager = (SensorManager)this.getActivity().getSystemService(Activity.SENSOR_SERVICE);
+        List<Sensor> sensors = manager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+        if(sensors.size() > 0) {
+            Sensor s = sensors.get(0);
+            manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
+        }
     }
 
     @Override
@@ -93,11 +108,18 @@ public class PianoFragment extends Fragment implements SensorEventListener {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        manager.unregisterListener(this);
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        if(sensorEvent.sensor.getType()==Sensor.TYPE_ACCELEROMETER) {
+            float accX = sensorEvent.values[0];
+            float accY = sensorEvent.values[1];
+            float accZ = sensorEvent.values[2];
 
+            Log.d(TAG,Float.toString(accX)+","+Float.toString(accY)+","+Float.toString(accZ));
+        }
     }
 
     @Override
