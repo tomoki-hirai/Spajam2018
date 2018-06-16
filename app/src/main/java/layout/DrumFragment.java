@@ -91,7 +91,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
             manager.registerListener(this, s, SensorManager.SENSOR_DELAY_GAME);
         }
 
-        mManager.setup(this.getActivity());
+        mManager.setupDrum(this.getActivity());
 
     }
 

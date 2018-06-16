@@ -169,15 +169,18 @@ public class MediaManager extends Activity {
         setSound();
     }
 
-    public void setup(Activity argActivity){
+    public void setupDrum(Activity argActivity){
         setMyActivity(argActivity);
         setMediaPlayer();
-        selectDrumSound(2);
-//        selectPianoSound(2);
-
+        selectDrumSound(0);
         prepare();
+    }
 
-
+    public void setupPiano(Activity argActivity){
+        setMyActivity(argActivity);
+        setMediaPlayer();
+        selectPianoSound(2);
+        prepare();
     }
 
     public void reset(){
