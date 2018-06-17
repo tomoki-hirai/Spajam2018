@@ -71,14 +71,23 @@ public class MediaManager extends Activity {
 
     // 音量を設定
     public void setVolume(int argJudgeNum){
-        try {
-            manager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) (judgeVol(argJudgeNum)), 0);
-            Log.d("MediaError","音量を設定しました");
-        }catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            Log.d("MediaError","音量設定エラー");
-            e.printStackTrace();
+        if (myActivity.getLocalClassName().equals("MainActivity")) {
+            try {
+                player.start();
+                Log.d("MediaError", "再生します");
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                Log.d("MediaError", "再生エラー");
+                e.printStackTrace();
+            }
+        }else{
+            if (System.currentTimeMillis()-sendTime>200) {
+                OkHttpSingleton okHttpSingleton = OkHttpSingleton.getInstance();
+                okHttpSingleton.post(musicName + ".mp3");
+            }
+            sendTime=System.currentTimeMillis();
         }
+
     }
 
     // 最大音量値を取得
@@ -147,7 +156,7 @@ public class MediaManager extends Activity {
         if(num==0){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
             musicName="bassdrum";
-        Log.d("MediaError","bass");}
+            Log.d("MediaError","bass");}
         else if(num==1){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.cymbal;
             musicName="cymbal";
