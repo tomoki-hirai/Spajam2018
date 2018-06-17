@@ -147,7 +147,7 @@ public class MediaManager extends Activity {
         if(num==0){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
             musicName="bassdrum";
-        Log.d("MediaError","bass");}
+            Log.d("MediaError","bass");}
         else if(num==1){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.cymbal;
             musicName="cymbal";
