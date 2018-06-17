@@ -40,6 +40,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
     long ActionTime=0;
+    String activityName;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -79,6 +80,8 @@ public class DrumFragment extends Fragment implements SensorEventListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityName = getContext().getClass().getSimpleName();
+        Log.d("name",activityName);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -222,7 +225,7 @@ public class DrumFragment extends Fragment implements SensorEventListener{
         int Min = 20; //動作する最小値
         int Middle = 50;
         int Max = 90; //動作する最小値
-        int interval = 50; //動作の検知間隔
+        int interval = 20; //動作の検知間隔
 //        Log.d(TAG,Float.toString(System.currentTimeMillis()));
         if (System.currentTimeMillis()-ActionTime> interval) {
             if (Max < accSum) {

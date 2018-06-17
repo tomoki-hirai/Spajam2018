@@ -16,6 +16,8 @@ public class MediaManager extends Activity {
     private String fileName;
 
     private AudioManager manager;
+    private String musicName;
+    public long sendTime=0;
 
     // 　コンストラクタ
     public void MediaManager(){
@@ -93,13 +95,21 @@ public class MediaManager extends Activity {
 
     // 音を再生
     public void playSound() {
-        try {
-            player.start();
-            Log.d("MediaError","再生します");
-        }catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            Log.d("MediaError","再生エラー");
-            e.printStackTrace();
+        if (myActivity.getLocalClassName().equals("MainActivity")) {
+            try {
+                player.start();
+                Log.d("MediaError", "再生します");
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                Log.d("MediaError", "再生エラー");
+                e.printStackTrace();
+            }
+        }else{
+            if (System.currentTimeMillis()-sendTime>500) {
+                sendTime=System.currentTimeMillis();
+                OkHttpSingleton okHttpSingleton = OkHttpSingleton.getInstance();
+                okHttpSingleton.post(musicName + ".mp3");
+            }
         }
     }
 
@@ -136,36 +146,58 @@ public class MediaManager extends Activity {
         reset();
         if(num==0){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.bassdrum;
+            musicName="bassdrum";
         Log.d("MediaError","bass");}
         else if(num==1){
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.cymbal;
+            musicName="cymbal";
             Log.d("MediaError","cymbal");
         }
-        else if(num==2)
+        else if(num==2) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.hat;
-        else if(num==3)
+            musicName = "hat";
+        }
+        else if(num==3) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.snare;
+            musicName = "snare";
+        }
         setSound();
     }
 
     public void selectPianoSound(int num){
         reset();
-        if(num==0)
+        if(num==0) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianodo;
-        else if(num==1)
+            musicName = "pianodo";
+        }
+        else if(num==1) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianore;
-        else if(num==2)
+            musicName="pianore";
+        }
+        else if(num==2) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianomi;
-        else if(num==3)
+            musicName = "pianomi";
+        }
+        else if(num==3) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianofa;
-        else if(num==4)
+            musicName="pianofa";
+        }
+        else if(num==4) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianoso;
-        else if(num==5)
+            musicName = "pianoso";
+        }
+        else if(num==5) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianora;
-        else if(num==6)
+            musicName = "pianora";
+        }
+        else if(num==6) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianosi;
-        else if(num==7)
+            musicName="pianosi";
+        }
+        else if(num==7) {
             fileName = "android.resource://" + myActivity.getPackageName() + "/" + R.raw.pianohighdo;
+            musicName = "pianohighdo";
+        }
         setSound();
     }
 
