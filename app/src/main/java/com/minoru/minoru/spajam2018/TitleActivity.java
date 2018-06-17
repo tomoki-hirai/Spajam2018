@@ -21,5 +21,14 @@ public class TitleActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         } );
+
+        Button multiButton = (Button) findViewById(R.id.multiButton);
+        multiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TitleActivity.this, MultiActivity.class);
+                startActivity(intent);
+            }
+        } );
     }
 }
