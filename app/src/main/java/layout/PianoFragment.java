@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 
 import com.minoru.minoru.spajam2018.MainActivity;
 import com.minoru.minoru.spajam2018.MediaManager;
+import com.minoru.minoru.spajam2018.OkHttpSingleton;
 import com.minoru.minoru.spajam2018.R;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
     private static final String ARG_PARAM2 = "param2";
     private SensorManager manager;
     String TAG = MainActivity.class.getName();
+    String activityName;
+
     private int[] buttonIDs = {R.id.PianoButton1,R.id.PianoButton2,R.id.PianoButton3,
             R.id.PianoButton4,R.id.PianoButton5,R.id.PianoButton6,
             R.id.PianoButton7,R.id.PianoButton8,R.id.PianoButton8};
@@ -78,6 +81,8 @@ public class PianoFragment extends Fragment implements SensorEventListener ,View
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityName = getContext().getClass().getSimpleName();
+        Log.d("name",activityName);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
